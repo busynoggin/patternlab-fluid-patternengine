@@ -40,11 +40,11 @@ class PartialNamingHelper
         foreach ($configuration as $patternConfiguration) {
             if ($patternConfiguration['category'] === 'pattern') {
                 if (
-                    $patternConfiguration['name'] === $patternName
-                    || $patternConfiguration['path'] . DIRECTORY_SEPARATOR . $patternConfiguration['name'] === $patternName
-                    || $patternConfiguration['nameDash'] === $patternName
-                    || $patternConfiguration['nameClean'] === $patternName
-                    || $patternConfiguration['partial'] === $patternName
+                    (isset($patternConfiguration['name']) && ($patternConfiguration['name'] === $patternName))
+                    || (isset($patternConfiguration['path']) && isset($patternConfiguration['name']) && ($patternConfiguration['path'] . DIRECTORY_SEPARATOR . $patternConfiguration['name'] === $patternName))
+                    || (isset($patternConfiguration['nameDash']) && ($patternConfiguration['nameDash'] === $patternName))
+                    || (isset($patternConfiguration['nameClean']) && ($patternConfiguration['nameClean'] === $patternName))
+                    || (isset($patternConfiguration['partial']) && ($patternConfiguration['partial'] === $patternName))
                 ) {
                     $breadcrumbs = array_map(function($b) {
                         return implode('', array_map('ucfirst', explode(' ', $b)));
@@ -61,11 +61,11 @@ class PartialNamingHelper
         foreach ($configuration as $patternConfiguration) {
             if ($patternConfiguration['category'] === 'pattern') {
                 if (
-                    $patternConfiguration['name'] === $patternName
-                    || $patternConfiguration['path'] === $patternName
-                    || $patternConfiguration['nameDash'] === $patternName
-                    || $patternConfiguration['nameClean'] === $patternName
-                    || $patternConfiguration['partial'] === $patternName
+                    (isset($patternConfiguration['name']) && ($patternConfiguration['name'] === $patternName))
+                    || (isset($patternConfiguration['path']) && ($patternConfiguration['path'] === $patternName))
+                    || (isset($patternConfiguration['nameDash']) && ($patternConfiguration['nameDash'] === $patternName))
+                    || (isset($patternConfiguration['nameClean']) && ($patternConfiguration['nameClean'] === $patternName))
+                    || (isset($patternConfiguration['partial']) && ($patternConfiguration['partial'] === $patternName))
                 ) {
                     return $patternConfiguration['partial'];
                 }
