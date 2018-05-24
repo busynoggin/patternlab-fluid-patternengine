@@ -46,7 +46,10 @@ class PartialNamingHelper
                     || $patternConfiguration['nameClean'] === $patternName
                     || $patternConfiguration['partial'] === $patternName
                 ) {
-                    return implode(DIRECTORY_SEPARATOR, array_map('ucfirst', array_values($patternConfiguration['breadcrumb']))) . DIRECTORY_SEPARATOR . implode('', array_map('ucfirst', explode('-', $patternConfiguration['nameDash'])));
+                    $breadcrumbs = array_map(function($b) {
+                        return implode('', array_map('ucfirst', explode(' ', $b)));
+                    }, $patternConfiguration['breadcrumb']);
+                    return implode(DIRECTORY_SEPARATOR, $breadcrumbs) . DIRECTORY_SEPARATOR . implode('', array_map('ucfirst', explode('-', $patternConfiguration['nameDash'])));
                 }
             }
         }
